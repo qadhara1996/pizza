@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Цены ингредиентов
     const prices = {
         base: {
             base1: 10,
@@ -27,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
-    // Текущий выбор пользователя
     const currentSelection = {
         base: null,
         ingredient1: [],
@@ -38,22 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderBtn = document.getElementById('order-btn');
     const buildStage = document.getElementById('build-stage');
     
-    // Обработчики выбора ингредиентов
     document.querySelectorAll('.ingredient-option').forEach(option => {
         option.addEventListener('click', function() {
             const type = this.dataset.type;
             const value = this.dataset.value;
             const name = this.dataset.name;
             
-            // Для ингредиентов 1 и 2 - множественный выбор
             if (type === 'ingredient1' || type === 'ingredient2') {
-                // Если элемент уже выбран, удаляем его
                 if (this.classList.contains('selected')) {
                     removeSelectedItem(type, value);
                     this.classList.remove('selected');
                     currentSelection[type] = currentSelection[type].filter(item => item !== value);
                 } 
-                // Если элемент не выбран и не достигнут лимит
                 else if (currentSelection[type].length < 2) {
                     this.classList.add('selected');
                     addSelectedItem(type, value, name);
@@ -63,17 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
             } 
-            // Для основы и соуса - единичный выбор
             else {
-                // Если элемент уже выбран, удаляем его
                 if (this.classList.contains('selected')) {
                     removeSelectedItem(type, value);
                     this.classList.remove('selected');
                     currentSelection[type] = null;
                 } 
-                // Если элемент не выбран
                 else {
-                    // Если для этого типа уже есть выбор, сначала удаляем старый
                     if (currentSelection[type] !== null) {
                         removeSelectedItem(type, currentSelection[type]);
                         document.querySelector(`.ingredient-option[data-type="${type}"][data-value="${currentSelection[type]}"]`)
@@ -86,29 +76,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Обновляем отображение пиццы
             updatePizzaView();
             
-            // Обновляем цену
             updatePrice();
             
-            // Обновляем этап сборки
             updateBuildStage();
             
-            // Проверяем, можно ли активировать кнопку "Заказать"
             checkOrderButton();
             
-            // Обновляем доступность опций
             updateOptionsAvailability();
         });
     });
     
-    // Обновление доступности опций
     function updateOptionsAvailability() {
         document.querySelectorAll('.ingredient-option').forEach(option => {
             const type = option.dataset.type;
             
-            // Для ингредиентов 1 и 2
             if (type === 'ingredient1' || type === 'ingredient2') {
                 if (currentSelection[type].length >= 2 && !option.classList.contains('selected')) {
                     option.classList.add('max-selected');
@@ -119,14 +102,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Обновление отображения пиццы
     function updatePizzaView() {
-        // Сначала скрываем все изображения
         document.querySelectorAll('.pizza-image').forEach(img => {
             img.classList.remove('active');
         });
         
-        // Определяем какое изображение показывать
         if (currentSelection.base && currentSelection.sauce && 
             currentSelection.ingredient1.length > 0 && currentSelection.ingredient2.length > 0) {
             document.getElementById('pizza-full').classList.add('active');
@@ -156,7 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Проверка активности кнопки "Заказать"
     function checkOrderButton() {
         const allSelected = currentSelection.base && 
                            currentSelection.ingredient1.length > 0 && 
@@ -165,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         orderBtn.disabled = !allSelected;
     }
     
-    // Добавление выбранного элемента в область просмотра
     function addSelectedItem(type, value, name) {
         const selectedItems = document.getElementById('selected-items');
         const item = document.createElement('div');
@@ -195,13 +173,11 @@ document.addEventListener('DOMContentLoaded', function() {
         selectedItems.appendChild(item);
     }
     
-    // Удаление выбранного элемента
     function removeSelectedItem(type, value) {
         const item = document.querySelector(`.selected-item[data-type="${type}"][data-value="${value}"]`);
         if (item) item.remove();
     }
     
-    // Обновление цены
     function updatePrice() {
         let total = 0;
         
@@ -220,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('total-price').textContent = total;
     }
     
-    // Обработчик кнопки заказа
     orderBtn.addEventListener('click', function() {
         const orderInfo = {
             base: {
