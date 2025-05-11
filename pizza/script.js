@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Обновление этапа сборки
     function updateBuildStage() {
         if (!currentSelection.base) {
             buildStage.textContent = "Выберите основу";
