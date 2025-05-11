@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конструктор пиццы</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+</head>
+<body>
+    <h1>Конструктор пиццы</h1>
+    
+    <div class="progress-indicator">
+        Этап сборки: <span id="build-stage">Выберите основу</span>
+    </div>
+    
+    <div class="main-container">
+        <div class="pizza-container">
+            <div class="pizza-view">
+                <img src="img/empty_pizza-01.jpg" alt="Пустая пицца" class="pizza-image active" id="pizza-empty">
+                <img src="img/1rd_pizza-01.jpg" alt="Только основа" class="pizza-image" id="pizza-base">
+                <img src="img/2rd_pizza-01.jpg" alt="Основа + ингредиент 1" class="pizza-image" id="pizza-ing1">
+                <img src="img/3rd_pizza-01.jpg" alt="Основа + ингредиент 2" class="pizza-image" id="pizza-ing2">
+                <img src="img/all_pizza (2).jpg" alt="Полная пицца" class="pizza-image" id="pizza-full">
+            </div>
+            
+            <div class="ingredients">
+                <div class="ingredient-category">
+                    <h3>Основа</h3>
+                    <div class="ingredient-option" data-type="base" data-value="base1" data-name="Тонкая">Тонкая</div>
+                    <div class="ingredient-option" data-type="base" data-value="base2" data-name="Ультратонкая">Ультратонкая</div>
+                    <div class="ingredient-option" data-type="base" data-value="base3" data-name="Обычная">Обычная</div>
+                    <div class="ingredient-option" data-type="base" data-value="base4" data-name="Ржаная">Ржаная</div>
+                </div>
+                
+                <div class="ingredient-category">
+                    <h3>Мясо</h3>
+                    <div class="ingredient-option" data-type="ingredient1" data-value="ing1.1" data-name="Курица">Курица</div>
+                    <div class="ingredient-option" data-type="ingredient1" data-value="ing1.2" data-name="Баварские колбаски">Баварские колбаски</div>
+                    <div class="ingredient-option" data-type="ingredient1" data-value="ing1.3" data-name="Пеперони">Пеперони</div>
+                    <div class="ingredient-option" data-type="ingredient1" data-value="ing1.4" data-name="Бекон">Бекон</div>
+                </div>
+                
+                <div class="ingredient-category">
+                    <h3>Разное</h3>
+                    <div class="ingredient-option" data-type="ingredient2" data-value="ing2.1" data-name="Шампиньоны">Шампиньоны</div>
+                    <div class="ingredient-option" data-type="ingredient2" data-value="ing2.2" data-name="Перец">Перец</div>
+                    <div class="ingredient-option" data-type="ingredient2" data-value="ing2.3" data-name="Томаты">Томаты</div>
+                    <div class="ingredient-option" data-type="ingredient2" data-value="ing2.4" data-name="Артишоки">Артишоки</div>
+                </div>
+                
+                <div class="ingredient-category">
+                    <h3>Соус</h3>
+                    <div class="ingredient-option" data-type="sauce" data-value="sauce1" data-name="Ранч">Ранч</div>
+                    <div class="ingredient-option" data-type="sauce" data-value="sauce2" data-name="Барбекю">Барбекю</div>
+                    <div class="ingredient-option" data-type="sauce" data-value="sauce3" data-name="Альфредо">Альфредо</div>
+                    <div class="ingredient-option" data-type="sauce" data-value="sauce4" data-name="Сырный">Сырный</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="order-preview">
+            <h2>Ваш заказ</h2>
+            <div class="selected-items" id="selected-items">
+            </div>
+            <div class="price">Цена: <span id="total-price">0</span>$</div>
+            <button class="order-btn" id="order-btn" disabled>ЗАКАЗАТЬ</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
