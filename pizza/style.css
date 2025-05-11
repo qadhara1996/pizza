@@ -13,7 +13,6 @@ justify-content: center;
 .main-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
 }
 
 .pizza-container {
